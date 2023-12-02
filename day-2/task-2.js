@@ -43,16 +43,7 @@ function maxColor(input) {
     cleansedInput.push(Number(arr[0]))
   })
 
-  return max(cleansedInput);
-}
-
-function max(arr) {
-  let max = -Infinity;
-  for (let i = 0; i < arr.length; i++) {
-    if (max < arr[i]) max = arr[i];
-  }
-
-  return max;
+  return Math.max(...cleansedInput);
 }
 
 console.log(total);

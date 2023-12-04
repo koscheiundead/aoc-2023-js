@@ -8,13 +8,12 @@ for (let i = 1; i <= 202; i++) {
   scratchcards[i] = 1;
 }
 
-for (let i = 1; i < 202; i++) {
-  let [game, scratched, winners] = cleanseLine(input[i]);
-  let points = checkWinners(scratched, winners);
-  let copiesOfCard = scratchcards[i];
-  for (let copy = 0; copy < copiesOfCard; copy++) {
+for (let i = 1; i <= 202; i++) {
+  let copies = scratchcards[i];
+  let points = cleanseLine(input[i - 1]);
+  for (let copy = 0; copy < copies; copy++) {
     for (let j = i + 1; j <= Math.min(i + points, 202); j++) {
-      if (scratchcards[j]) scratchcards[j] += 1;
+      scratchcards[j] += 1;
     }
   }
 }
@@ -27,7 +26,8 @@ function cleanseLine(input) {
   let [scratchedOff, winningNumbers] = output.split(" | ");
   scratchedOff = scratchedOff.trim().split(' ');
   winningNumbers = winningNumbers.trim().split(' ');
-  return [scratchedOff, winningNumbers]
+
+  return checkWinners(scratchedOff, winningNumbers);
 }
 
 function checkWinners(input, winningNumbers) {
